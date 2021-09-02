@@ -1,0 +1,18 @@
+# 测试接口写的是否正确 是否可以正常访问
+GET https://localhost:8080/
+# 期望数据格式
+Accept: application/json
+
+# 可以书写结果验证脚本
+> {%
+client.test("test-hello", function() {
+  //  可以写日志
+  client.log("测试/hello接口");
+  client.log(response.body);
+  client.log(JSON.stringify(response.body)); // 虽然idea没有提示JSON，但是可以用
+  client.assert(response.status === 200, "返回码不是200");
+  client.assert(response.body === "Hello World", "结果验证失败");
+});
+%}
+
+###
