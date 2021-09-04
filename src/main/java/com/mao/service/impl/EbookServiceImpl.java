@@ -9,6 +9,7 @@ import com.mao.service.EbookService;
 import com.mao.util.CopyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -35,7 +36,10 @@ public class EbookServiceImpl implements EbookService {
         // 这个方法可以理解为where条件
         EbookExample.Criteria criteria = ebookExample.createCriteria();
         // 模糊查询
-        criteria.andNameLike("%" + ebookReq.getName() + "%");
+        // 判断是否传递参数，传递参数则进行模糊查询 不传递参数则查询所有
+        if (!ObjectUtils.isEmpty(ebookReq.getName())) {
+            criteria.andNameLike("%" + ebookReq.getName() + "%");
+        }
         List<Ebook> ebookList = ebookMapper.selectByExample(ebookExample);
         // 将查询到的ebook列表，将都转为 ebookResp类型
         // List<EbookResp> list = new LinkedList<>();

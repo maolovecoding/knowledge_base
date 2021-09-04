@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author 毛毛
@@ -14,8 +15,15 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * @ComponentScan: 配置扫描的包
  * @MapperScan: 扫描持久层接口
  */
+@RestController
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.mao.controller", "com.mao.service","com.mao.mapper"})
+@ComponentScan(basePackages = {
+        "com.mao.controller",
+        "com.mao.service",
+        "com.mao.mapper",
+        "com.mao.filter",
+        "com.mao.interceptor",
+        "com.mao.aspect"})
 @MapperScan(basePackages = {"com.mao.mapper"})
 public class KnowledgeBaseApplication {
     /**
