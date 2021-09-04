@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @ClassName: EbookServiceImpl
- * @Description: TODO
+ * @Description: ebook业务层接口实现
  * @Author 毛毛
  * @CreateDate 2021/09/02/周四 19:17
  * @Version: v1.0
