@@ -1,30 +1,40 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <a-layout>
+    <!--    上-->
+    <the-header/>
+    <!--    中-->
+    <router-view/>
+    <!--    下-->
+    <the-footer/>
+  </a-layout>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script lang="ts">
+import {defineAsyncComponent} from "vue";
+
+export default {
+  name: "App",
+  components: {
+    "TheHeader":defineAsyncComponent(/* webpackChunkName:"the-header" */()=>import("./components/The-Header.vue")),
+    "TheFooter":defineAsyncComponent(/* webpackChunkName:"the-header" */()=>import("./components/The-Footer.vue"))
+  }
+}
+</script>
+<style>
+#components-layout-demo-top-side-2 .logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
 }
 
-#nav {
-  padding: 30px;
+.ant-row-rtl #components-layout-demo-top-side-2 .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.site-layout-background {
+  background: #fff;
 }
 </style>
